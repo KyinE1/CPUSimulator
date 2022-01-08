@@ -7,13 +7,13 @@
 class Simulator {
 private:
 	unsigned int memory[65536] = {};	// 8-bit storage locations.
-	std::string addr = ""; 				// Address in binary.
-	std::string opcode = ""; 			// Instruction in binary.
+	std::string addr = ""; 			// Address in binary.
+	std::string opcode = ""; 		// Instruction in binary.
 	bool flag = false;
 
 	// Define PEP8 registers found in the CPU (A, X, PC, SP, IR):
 	struct Registers {
-		int accumulator : 16; 					// Result of ALU operation.
+		int accumulator : 16; 				// Result of ALU operation.
 		unsigned int indexRegister : 16; 		// Array index.
 		unsigned int programCounter : 16; 		// Addressing the program memory.
 		unsigned int stackPointer : 16; 		// Addressing the runtime stack.
@@ -28,10 +28,10 @@ public:
 	std::string getOpcode() { return opcode; }
 
 	/** Load instruction, increment program counter and perform
-	 * 	instruction.
+	 * instruction.
 	 *
-	 *	@param opcode: Instruction specifier.
-	 *	@param addr: The address location for memory.
+	 * @param opcode: Instruction specifier.
+	 * @param addr: The address location for memory.
 	 **/
 	void executeInstruction(std::string opcode, std::string addr) {
 		// Load instruction from memory (fetch address or PC register).
@@ -229,9 +229,9 @@ public:
 	}
 
 	/** Break the hexidecimal string into the opcode and address.
-	 *	Call convert functions for hex to binary.
+	 * Call convert functions for hex to binary.
 	 *
-	 *	@param input: Instruction and address.
+	 * @param input: Instruction and address.
 	 **/
 	void parseHex(std::string input) {
 		// Set the instruction to opcode data member.
@@ -248,10 +248,10 @@ public:
 	}
 
 	/** Convert the hex input into a binary instruction or
-	 * 	memory address.
+	 * memory address.
 	 *
-	 * 	@param instruction: The 6 Hexidecimal characters.
-	 *	@return Binary string.
+	 * @param instruction: The 6 Hexidecimal characters.
+	 * @return: Binary string.
 	 **/
 	std::string convertHex(std::string hStr) {
 		std::string bStr = "";
@@ -283,8 +283,8 @@ public:
 
 	/** Convert the binary input into a decimal value.
 	 *
-	 *	@param bStr: The binary string.
-	 *	@return The decimal value.
+	 * @param bStr: The binary string.
+	 * @return: The decimal value.
 	 **/
 	int convertBinary(std::string bStr) {
 		std::string temp;
@@ -303,8 +303,8 @@ public:
 
 	/** Convert the decimal input into a binary string.
 	 *
-	 *	@param bStr: The decimal value.
-	 *	@return The binary string.
+	 * @param bStr: The decimal value.
+	 * @return: The binary string.
 	 **/
 	std::string convertDecimal(int decimal) {
 		std::string bStr;
@@ -332,16 +332,16 @@ public:
 	}
 };
 
-/**	Driver.
+/** Driver.
  *
- *	@param argc: Number of arguments.
- *	@param argv: User input (arguments).
- *	@note For an input file, the instructions
- *	should be included in a text file, one per line.
+ * @param argc: Number of arguments.
+ * @param argv: User input (arguments).
+ * @note: For an input file, the instructions
+ * should be included in a text file, one per line.
  *
- *	Ex input:
- *		30FFFE
- *		38FFFE
+ * Ex input:
+ *	30FFFE
+ *	38FFFE
  **/
 int main(int argc, const char* argv[]) {
 	Simulator obj;
@@ -359,6 +359,7 @@ int main(int argc, const char* argv[]) {
 				obj.executeInstruction(obj.getOpcode(), obj.getAddr());
 				obj.output();
 			}
+			
 			file.close();
 		}
 
